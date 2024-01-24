@@ -6,6 +6,8 @@
 3. Uuder TodoList file, Run `docker-compose up --build`.
 6. Congratulations! You can test it using Postman at `http://localhost:3000/`.
 
+[API design](https://github.com/ycccccccccccc/TodoList/blob/main/API_Doc.md)
+
 ## 訊息提醒任務即將到期
 使用 node-cron 套件，設定在每天的午夜時分，將隔天到期的 Task ，新增 Event 給有 Task 的相關人員(creator, followers, executors)
 
