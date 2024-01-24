@@ -4,13 +4,13 @@ services:
     image: mysql
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "$SERVER"
-      MYSQL_HOST: "$DOCKER_DB_host"
+      MYSQL_ROOT_PASSWORD: "$DB_password"
+      MYSQL_HOST: "$SERVER"
       MYSQL_DATABASE: todolist
     command: --init-file /docker-entrypoint-initdb.d/init.sql
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./util/init.sql:/docker-entrypoint-initdb.d/init.sql
     restart: always
     networks:
       - my_network
