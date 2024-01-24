@@ -151,6 +151,8 @@ http://localhost:3000
 
 ### Task API
 
+>Authorization
+
 * **End Point:** `/tasks`
 
 * **Method:** `POST`
@@ -428,6 +430,8 @@ http://localhost:3000
 
 ### Subtask API
 
+>Authorization
+
 * **End Point:** `/subtasks/:task_id`
 
 * **Method:** `POST`
@@ -610,6 +614,8 @@ http://localhost:3000
 
 ### Task API
 
+>Authorization
+
 * **End Point:** `/taskcomments/:task_id`
 
 * **Method:** `POST`
@@ -718,6 +724,366 @@ http://localhost:3000
                 "created_at": "2024-01-24 01:56:23"
             }
         ]
+    }
+}
+```
+--- 
+
+## Group
+
+### Group API
+
+>Authorization
+
+* **End Point:** `/groups`
+
+* **Method:** `POST`
+
+* **Request Headers:**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| Authorization | String | Access token preceding `Bearer `. For example: `Bearer x48aDD534da8ADSD1XC4SD5S` |
+| Content-Type | String | Only accept `application/json`. |
+
+* **Request Body**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| comment | String | TaskComment's content |
+
+* **Request Body Example:**
+
+```
+{
+    "name": "小圈圈"
+}
+```
+
+* **Success Response: 200**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| taskcomment.id | INT | taskcomment's id. |
+
+* **Success Response Example:**
+
+```
+{
+    "message": "Create group",
+    "data": {
+        "group": {
+            "id": 2
+        }
+    }
+}
+```
+
+### Group Follower API
+
+>Authorization
+
+* **End Point:** `/groups/:id/followers/:task_id`
+
+* **Method:** `POST`
+
+* **Request Headers:**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| Authorization | String | Access token preceding `Bearer `. For example: `Bearer x48aDD534da8ADSD1XC4SD5S` |
+
+* **Parameters**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| id | Number | Group's id |
+| task_id | Number | Task's id |
+
+* **Success Response: 200**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| followers.id | INT | followers's id. |
+| followers.user_id | INT | user's id. |
+
+* **Success Response Example:**
+
+```
+{
+    "message": "Create group followers",
+    "data": {
+        "followers": [
+            {
+                "id": 9,
+                "user_id": 3
+            }
+        ]
+    }
+}
+```
+
+### Group Executors API
+
+>Authorization
+
+* **End Point:** `/groups/:id/executors/:task_id`
+
+* **Method:** `POST`
+
+* **Request Headers:**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| Authorization | String | Access token preceding `Bearer `. For example: `Bearer x48aDD534da8ADSD1XC4SD5S` |
+
+* **Parameters**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| id | Number | Group's id |
+| task_id | Number | Task's id |
+
+* **Success Response: 200**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| executors.id | INT | executors's id. |
+| executors.user_id | INT | user's id. |
+
+* **Success Response Example:**
+
+```
+{
+    "message": "Create group executors",
+    "data": {
+        "executors": [
+            {
+                "id": 9,
+                "user_id": 3
+            }
+        ]
+    }
+}
+```
+
+--- 
+
+## GroupMember
+
+### GroupMember API
+
+>Authorization
+
+* **End Point:** `/groupmembers/:group_id`
+
+* **Method:** `POST`
+
+* **Request Headers:**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| Authorization | String | Access token preceding `Bearer `. For example: `Bearer x48aDD534da8ADSD1XC4SD5S` |
+| Content-Type | String | Only accept `application/json`. |
+
+* **Parameters**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| id | Number | Group's id |
+
+* **Request Body**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| identity | String | ENUM('leader', 'member') |
+
+* **Request Body Example:**
+
+```
+{
+    "identity": "member"
+}
+```
+
+* **Success Response: 200**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| groupmember.id | INT | Groupmember's id. |
+
+* **Success Response Example:**
+
+```
+{
+    "message": "Create group member",
+    "data": {
+        "groupmember": {
+            "id": 4
+        }
+    }
+}
+```
+--- 
+
+## Follower
+
+### Follower API
+
+>Authorization
+
+* **End Point:** `/followers/:task_id`
+
+* **Method:** `POST`
+
+* **Request Headers:**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| Authorization | String | Access token preceding `Bearer `. For example: `Bearer x48aDD534da8ADSD1XC4SD5S` |
+
+* **Parameters**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| task_id | Number | Task's id |
+
+* **Success Response: 200**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| follower.id | INT | Follower's id. |
+
+* **Success Response Example:**
+
+```
+{
+    "message": "Create follower",
+    "data": {
+        "follower": {
+            "id": 15
+        }
+    }
+}
+```
+
+### Task delete API
+
+>Authorization
+
+* **End Point:** `/followers/:task_id`
+
+* **Method:** `POST`
+
+* **Request Headers:**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| Authorization | String | Access token preceding `Bearer `. For example: `Bearer x48aDD534da8ADSD1XC4SD5S` |
+
+* **Parameters**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| task_id | Number | Task's id |
+
+* **Success Response: 200**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| follower.id | INT | Follower's id. |
+
+* **Success Response Example:**
+
+```
+{
+    "message": "Delete follower",
+    "data": {
+        "follower": {
+            "id": 9
+        }
+    }
+}
+```
+
+--- 
+
+## Executor
+
+### Executor API
+
+>Authorization
+
+* **End Point:** `/executors/:task_id`
+
+* **Method:** `POST`
+
+* **Request Headers:**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| Authorization | String | Access token preceding `Bearer `. For example: `Bearer x48aDD534da8ADSD1XC4SD5S` |
+
+* **Parameters**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| task_id | Number | Task's id |
+
+* **Success Response: 200**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| executors.id | INT | Executors's id. |
+
+* **Success Response Example:**
+
+```
+{
+    "message": "Create executor",
+    "data": {
+        "executor": {
+            "id": 10
+        }
+    }
+}
+```
+
+### Executor delete API
+
+>Authorization
+
+* **End Point:** `/executors/:task_id`
+
+* **Method:** `POST`
+
+* **Request Headers:**
+
+| Field | Type | Description |
+| :---: | :---: | :---: |
+| Authorization | String | Access token preceding `Bearer `. For example: `Bearer x48aDD534da8ADSD1XC4SD5S` |
+
+* **Parameters**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| task_id | Number | Task's id |
+
+* **Success Response: 200**
+
+| Field | Type | Description |
+| :---: | :---: | :--- |
+| executor.id | INT | Executor's id. |
+
+* **Success Response Example:**
+
+```
+{
+    "message": "Delete executor",
+    "data": {
+        "executor": {
+            "id": 9
+        }
     }
 }
 ```
