@@ -39,7 +39,7 @@ module.exports = {
                 res.status(200).json({
                     message: 'Create group member',
                     data: {
-                        groupMember: {
+                        groupmember: {
                             id: groupMemberID
                         }
                     }

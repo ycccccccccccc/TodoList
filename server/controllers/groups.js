@@ -31,7 +31,7 @@ module.exports = {
                     res.status(200).json({
                         message: 'Create group',
                         data: {
-                            taskComment: {
+                            group: {
                                 id: groupID
                             }
                         }

@@ -76,7 +76,7 @@ module.exports = {
                 res.status(200).json({
                     message: 'Get task comments',
                     data: {
-                        taskComment: comments
+                        taskComments: comments
                     }
                 });
             }

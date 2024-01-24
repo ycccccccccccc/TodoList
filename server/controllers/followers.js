@@ -21,7 +21,7 @@ module.exports = {
                 });
             }
 
-            if (followCheck.length > 0) {
+            if (checkResult.length > 0) {
                 return res.status(409).json({
                     message: 'Follower already exists!'
                 });
@@ -81,7 +81,7 @@ module.exports = {
                 res.status(200).json({
                     message: 'Delete follower',
                     data: {
-                        executor: {
+                        follower: {
                             id: followerCheck[0].id
                         }
                     }
